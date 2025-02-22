@@ -19,6 +19,8 @@ const AddLessonButton = ({ isPopupOpen, onClose, initialDate, initialTime }) => 
     // Устанавливаем endTime на час позже, чем initialTime
     useEffect(() => {
         if (initialTime) {
+            console.log(initialDate);
+            
             const startHour = parseInt(initialTime.split(":")[0]);
             const endHour = startHour + 1;
             const endTimeValue = `${endHour.toString().padStart(2, "0")}:00`;
@@ -26,32 +28,26 @@ const AddLessonButton = ({ isPopupOpen, onClose, initialDate, initialTime }) => 
         }
     }, [initialTime]);
 
-    const handleAddLesson = (repeatCount) => {
+    const handleAddLesson = () => {
         if (!validateTime(startTime, endTime)) {
             alert('Время окончания должно быть позже времени начала');
             return;
         }
 
-        for (let i = 0; i < repeatCount; i++) {
-            const lessonDate = new Date(date);
-            lessonDate.setDate(lessonDate.getDate() + i * 7); // Добавляем неделю для каждого повторения
+        const newLesson = {
+            start: `${date}T${startTime}`,
+            end: `${date}T${endTime}`,
+            studentId: parseInt(studentId),
+            lessonId: Date.now() // Уникальный ID занятия
+        };
 
-            const newLesson = {
-                start: `${lessonDate.toISOString().split("T")[0]}T${startTime}`,
-                end: `${lessonDate.toISOString().split("T")[0]}T${endTime}`,
-                studentId: parseInt(studentId),
-                lessonId: Date.now() + i, // Уникальный ID для каждого занятия
-            };
-
-            if (checkForOverlap(newLesson, lessons)) {
-                alert(`Занятие ${i + 1} пересекается с другим занятием`);
-                return;
-            }
-
-            addLesson(newLesson);
-            console.log('Добавленное занятие:', newLesson);
+        if (checkForOverlap(newLesson, lessons)) {
+            alert('Занятие пересекается с другим занятием');
+            return;
         }
 
+        addLesson(newLesson);
+        console.log('Добавленное занятие:', newLesson);
         onClose(); // Закрываем попап
         resetForm();
     };

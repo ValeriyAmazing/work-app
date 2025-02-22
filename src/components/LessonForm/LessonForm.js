@@ -1,5 +1,5 @@
 // components/LessonForm.js
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import styles from "./LessonForm.module.css";
 
 const LessonForm = ({
@@ -17,8 +17,6 @@ const LessonForm = ({
     initialDate, // Начальная дата
     initialTime, // Начальное время
 }) => {
-    const [repeatCount, setRepeatCount] = useState(1); // Количество повторений
-
     // Устанавливаем начальные значения при открытии формы
     useEffect(() => {
         if (initialDate) setDate(initialDate);
@@ -27,7 +25,7 @@ const LessonForm = ({
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        onSubmit(repeatCount); // Передаем количество повторений
+        onSubmit();
     };
 
     return (
@@ -75,17 +73,6 @@ const LessonForm = ({
                     value={endTime}
                     onChange={(e) => setEndTime(e.target.value)}
                     required
-                    className={styles.input}
-                />
-            </label>
-            <label className={styles.label}>
-                Повторять каждую неделю:
-                <input
-                    type="number"
-                    value={repeatCount}
-                    onChange={(e) => setRepeatCount(parseInt(e.target.value) || 1)}
-                    min="1"
-                    max="52" // Максимум 52 недели (1 год)
                     className={styles.input}
                 />
             </label>

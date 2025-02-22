@@ -20,6 +20,7 @@ const ScheduleTable = () => {
         today.setDate(today.getDate() + weekOffset * 7); // Сдвиг на неделю
         for (let i = 0; i < 7; i++) {
             const date = new Date(today);
+            date.setHours(2)
             date.setDate(today.getDate() + i);
             dates.push(date);
         }
