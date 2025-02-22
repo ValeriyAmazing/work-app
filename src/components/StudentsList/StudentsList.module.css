@@ -1,0 +1,84 @@
+/* components/StudentsList.module.css */
+.container {
+    padding: 20px;
+}
+
+.form {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.input {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    flex: 1;
+}
+
+.button {
+    padding: 8px 16px;
+    background-color: #225845;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.button:hover {
+    background-color: #094f48;
+}
+
+.list {
+    list-style: none;
+    padding: 0;
+}
+
+.item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    border: 1px solid #102c3177;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    box-shadow: .1px .1px 4px 1px rgba(0, 0, 0, 0.445);
+    cursor: pointer;
+    background-color: #35524f37;
+}
+
+.item:hover{
+    background-color: #35524f80;
+}
+
+.avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+.details {
+    flex: 1;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.details span:nth-of-type(2){
+    text-align: center;
+}
+
+.details span:nth-of-type(3){
+    text-align: right;
+}
+
+.deleteButton {
+    background: none;
+    border: none;
+    color: #dc3545;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.deleteButton:hover {
+    opacity: 0.8;
+}

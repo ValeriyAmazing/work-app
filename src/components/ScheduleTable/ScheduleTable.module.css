@@ -1,0 +1,137 @@
+/* components/ScheduleTable.module.css */
+.tableContainer {
+  margin-top: 20px;
+  overflow-x: auto;
+}
+
+.weekNavigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.weekNavigation button {
+  padding: 8px 16px;
+  background-color: #00ffc392;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.weekNavigation button:hover {
+  background-color: #00b37d8c;
+}
+
+.table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 1px;
+  table-layout: fixed;
+  color: rgb(255, 255, 255);
+}
+
+.table th {
+  border: 1px solid #ffffff10;
+  font-weight: 100;
+  font-size: 1.3rem;
+  text-align: center;
+  background-color: #388d6f4f;
+  padding: 8px;
+}
+
+.table td {
+  text-align: center;
+  font-weight: 300;
+  position: relative; /* Для позиционирования tooltip */
+}
+
+.timeCell {
+  background-color: #5c8e6c4e;
+  font-weight: bold;
+}
+
+.cell {
+  height: 40px;
+  vertical-align: top;
+  background-color: #244d5d34;
+  padding: 0px;
+}
+
+.cell:has(.lesson) {
+  border: 0px solid rgba(0, 0, 0, 0);
+  padding: 0;
+}
+
+.lesson {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 2px 5px;
+  background-color: #153638;
+  height: 100%;
+  width: 100%;
+}
+
+.avatar {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+}
+
+.studentInfo {
+  flex: 1;
+  text-align: left;
+}
+
+.studentInfo span {
+  display: block;
+  font-size: 1.2rem;
+}
+
+.deleteButton {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  background: none;
+  border: none;
+  color: #dc3545;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+/* Подсветка строки при наведении */
+.table tbody tr:hover {
+  background-color: #1ca88a81; /* Цвет фона при наведении */
+  cursor: pointer; /* Изменение курсора */
+}
+
+/* Стили для tooltip */
+.cell:hover::after {
+  content: attr(data-tooltip); /* Текст подсказки */
+  position: absolute;
+  bottom: 100%; /* Позиционируем над ячейкой */
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #153638; /* Цвет фона tooltip */
+  color: #ffffff; /* Цвет текста */
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  white-space: nowrap;
+  z-index: 10;
+  opacity: 0.9;
+  pointer-events: none; /* Чтобы tooltip не мешал взаимодействию */
+  border: 1px solid #ffffff10; /* Граница для tooltip */
+}
+
+/* Анимация появления tooltip */
+.cell:hover::after {
+  transition: opacity 0.2s ease-in-out;
+  opacity: 1;
+}
